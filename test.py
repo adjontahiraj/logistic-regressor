@@ -8,11 +8,15 @@ def load_data(filename):
     Return: x values (numpy array: n x n)
             y values (numpy array: n x 1)
     """
+    data = np.load(filename)
+    for i in range(len(data)):
+        print(data[i])
+        print("\n")
     data_x, data_y = []
     # TODO: Finish this function here.
     return data_x, data_y
 
-def red_wine_run(train_red_x, train_red_y, test_red_x. test_red_y):
+def red_wine_run(train_red_x, train_red_y, test_red_x, test_red_y):
     # Red wine data
     print('---------------\nRed Wine Data\n---------------')
 
@@ -77,4 +81,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-    
+output = load_data('hw2_winequality-red_train.npy')
