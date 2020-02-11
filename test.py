@@ -33,8 +33,8 @@ def red_wine_run(train_red_x, train_red_y, test_red_x, test_red_y):
     # Training Phase
     # values for 2D-grid search
     lam     = [0.001, 0.01]        # regularization weight [min, max]
-    alpha   = [0.01,0.1]        # learning rate [min, max]
-    nepochs = 10        # sample # of epochs
+    alpha   = [0.0,0.1]        # learning rate [min, max]
+    nepochs = 5        # sample # of epochs
     epsilon = 0.0       # epsilon value
     param   = []
     # end TODO
@@ -67,8 +67,8 @@ def white_wine_run(train_white_x, train_white_y, test_white_x, test_white_y):
     # similar to red_wine_run
     # values for 2D-grid search
     lam     = [0.001, 0.01]        # regularization weight [min, max]
-    alpha   = [0.01,0.1]        # learning rate [min, max]
-    nepochs = 10      # sample # of epochs
+    alpha   = [0.0,0.1]        # learning rate [min, max]
+    nepochs = 5      # sample # of epochs
     epsilon = 0.0       # epsilon value
     param   = []
     # end TODO
