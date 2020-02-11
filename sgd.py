@@ -2,28 +2,6 @@ import numpy as np
 import math
 import random
 
-# def load_data(filename):
-#     """
-#     arg: filename - filename of file you want to load data from
-#             e.g. red_train.npy 
-#     Return: x values (numpy array: n x n)
-#             y values (numpy array: n x 1)
-#     """
-#     data = np.load(filename)
-#     #print(data)
-#     data_x = np.zeros((len(data), 11))
-#     data_y = np.zeros(len(data))
-#     for i in range(len(data)):
-#         data_x[i] = data[i][0:11]
-#         data_y[i] = data[i][-1]
-#         # if(data[i][-1] <= 4):
-#         #     data_y[i] = 0
-#         # elif(data[i][-1] <= 6):
-#         #     data_y[i] = 1
-#         # else:
-#         #     data_y[i] = 2
-#     return data_x, data_y
-
 def initial_values():
     #out = [float(random.gauss(0,0.015)) for x in range(11)]
     #out.append(0)
@@ -81,8 +59,8 @@ def SGDSolver(phase, x, y, alpha, lamb, nepoch, epsilon, params):
             best_curr_model = initial_values()
             initial_error = 100000000
             lowest_error = 100000000
-            for alph in np.arange(alpha[0], alpha[1], ((alpha[1]-alpha[0])/10)):
-                for lam in np.arange(lamb[0], lamb[1], ((lamb[1]-lamb[0])/10)):
+            for alph in np.arange(alpha[0], alpha[1], ((alpha[1])/10)):
+                for lam in np.arange(lamb[0], lamb[1], ((lamb[1])/10)):
                     #looping through each epoch
                     model = initial_values()
                     error = 0
@@ -187,49 +165,3 @@ def SGDSolver(phase, x, y, alpha, lamb, nepoch, epsilon, params):
                 else:
                     out[i] = 2
         return out
-
-
-# lam     = [0, 0.001]        # regularization weight [min, max]
-# alpha   = [0,0.1]        # learning rate [min, max]
-# nepochs = 1       # sample # of epochs
-# epsilon = 0.0       # epsilon value
-# param   = []
-# train_red_x, train_red_y= load_data('hw2_winequality-red_train.npy')
-# bad = 0
-# med = 0
-# good = 0
-# for i in train_red_y:
-#     if i <5:
-#         bad+=1
-#     elif i >6:
-#         good+=1
-#     else:
-#         med +=1
-# #print(train_red_y)
-# models, errors,class_c = SGDSolver('Training', train_red_x, train_red_y, alpha, lam, nepochs, epsilon, param)
-
-# print("\nModel count ", len(models))
-# print("\nError count" , len(errors))
-# print("\nClass counts" , len(class_c))
-
-# print("\nModel for Bad: ")
-# print(models[0])
-# print("\nError for Bad: ")
-# print(errors[0])
-# print("\nClass count")
-# print(class_c[0])
-
-# print("\nModel for Medium: ")
-# print(models[1])
-# print("\nError for Medium: ")
-# print(errors[1])
-# print("\nClass count")
-# print(class_c[1])
-
-
-# print("\nModel for Good: ")
-# print(models[2])
-# print("\nError for Good: ")
-# print(errors[2])
-# print("\nClass count")
-# print(class_c[2])
