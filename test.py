@@ -16,12 +16,13 @@ def load_data(filename):
     data_y = np.zeros(len(data))
     for i in range(len(data)):
         data_x[i] = data[i][0:11]
-        if(data[i][-1] <= 4):
-            data_y[i] = 0
-        elif(data[i][-1] <= 6):
-            data_y[i] = 1
-        else:
-            data_y[i] = 2
+        data_y[i] = data[i][-1]
+        # if(data[i][-1] <= 4):
+        #     data_y[i] = 0
+        # elif(data[i][-1] <= 6):
+        #     data_y[i] = 1
+        # else:
+        #     data_y[i] = 2
     return data_x, data_y
 
 def red_wine_run(train_red_x, train_red_y, test_red_x, test_red_y):
@@ -30,13 +31,13 @@ def red_wine_run(train_red_x, train_red_y, test_red_x, test_red_y):
 
     # Training Phase
     # values for 2D-grid search
-    lam     = []        # regularization weight [min, max]
-    alpha   = []        # learning rate [min, max]
-    nepochs = []        # sample # of epochs
+    lam     = [0.01, 0.001]        # regularization weight [min, max]
+    alpha   = [0.0,0.1]        # learning rate [min, max]
+    nepochs = 5        # sample # of epochs
     epsilon = 0.0       # epsilon value
     param   = []
     # end TODO
-
+    #train_red_y = np.reshape(len(train_red_y),1)
     # using this alpha and lambda values run the training
     print(f"alpha: {alpha}, lambda:{lam}")
     print("Running Training phase")
@@ -64,9 +65,9 @@ def white_wine_run(train_white_x, train_white_y, test_white_x, test_white_y):
     # TODO: Change hyperparameter values here as needed 
     # similar to red_wine_run
     # values for 2D-grid search
-    lam     = []        # regularization weight [min, max]
-    alpha   = []        # learning rate [min, max]
-    nepochs = []        # sample # of epochs
+    lam     = [0.01, 0.001]        # regularization weight [min, max]
+    alpha   = [0.0,0.1]        # learning rate [min, max]
+    nepochs = 5        # sample # of epochs
     epsilon = 0.0       # epsilon value
     param   = []
     # end TODO
@@ -95,6 +96,12 @@ def main():
     # import all the data
     # TODO: call the load_data() function here and load data from file
     train_red_x, train_red_y        = load_data('hw2_winequality-red_train.npy')
+    # print(train_red_x)
+    # print("\n\n")
+    # print(len(train_red_x))
+    # print("\n\n")
+    # print(len(train_red_y))
+    # print(train_red_y)
     test_red_x, test_red_y          = load_data('hw2_winequality-red_test.npy')
     train_white_x, train_white_y    = load_data('hw2_winequality-white_train.npy')
     test_white_x, test_white_y      = load_data('hw2_winequality-white_test.npy')
