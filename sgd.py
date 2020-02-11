@@ -70,16 +70,16 @@ def SGDSolver(phase, x, y, alpha, lamb, nepoch, epsilon, params):
 
                         for feature_set in range(len(x)):
                             #print("Batch " ,feature_set+1, " out of ",len(x)," ")
-
+                            feature_se = random.randrange(0, len(x), 1)
                             #computing y^ with current model
-                            y_hat = compute_y_hat(model, x[feature_set]);
+                            y_hat = compute_y_hat(model, x[feature_se]);
                             real_out = -1
                             #computing the loss with current model
-                            if(c == 0 and (y[feature_set] != 0)):
+                            if(c == 0 and (y[feature_se] != 0)):
                                 real_out = 0
-                            elif(c == 1 and (y[feature_set] != 1) ):
+                            elif(c == 1 and (y[feature_se] != 1) ):
                                 real_out = 0
-                            elif(c == 2 and (y[feature_set] !=2)):
+                            elif(c == 2 and (y[feature_se] !=2)):
                                 real_out = 0
                             else:
                                 real_out = 1
@@ -91,7 +91,7 @@ def SGDSolver(phase, x, y, alpha, lamb, nepoch, epsilon, params):
                             #print("\nLoss: ",loss,"\n")
 
                             #updating weights using SGD
-                            model = update_weights(model, x[feature_set], y_hat, real_out, alph, lam) 
+                            model = update_weights(model, x[feature_se], y_hat, real_out, alph, lam) 
 
                     #checking the error here so I can use the data for 
                     for feature_set in range(len(x)):

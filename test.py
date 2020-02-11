@@ -2,6 +2,7 @@ import numpy as np
 import math
 import random
 from sgd import SGDSolver
+import time
 
 def load_data(filename):
     """
@@ -52,6 +53,9 @@ def red_wine_run(train_red_x, train_red_y, test_red_x, test_red_y):
     # Validation Phase
     x_mse = SGDSolver('Validation', test_red_x, test_red_y, alpha, lam, nepochs, epsilon, param)
     print(f"Current Red Wine Data MSE is: {x_mse}.")
+    print("\nAccuracy is: ")
+    acc = 1 - math.sqrt(x_mse)
+    print(acc)
 
     # Testing Phase
     red_wine_predicted = SGDSolver('Testing', test_red_x, test_red_y, alpha, lam, nepochs, epsilon, param)
@@ -86,7 +90,9 @@ def white_wine_run(train_white_x, train_white_y, test_white_x, test_white_y):
     # Validation Phase
     x_mse = SGDSolver('Validation', test_white_x, test_white_y, alpha, lam, nepochs, epsilon, param)
     print(f"Current White Wine Data MSE is: {x_mse}.")
-
+    print("\nAccuracy is: ")
+    acc = 1 - math.sqrt(x_mse)
+    print(acc)
     # Testing Phase
     white_wine_predicted = SGDSolver('Testing', test_white_x, test_white_y, alpha, lam, nepochs, epsilon, param)
 
@@ -106,10 +112,15 @@ def main():
     test_red_x, test_red_y          = load_data('hw2_winequality-red_test.npy')
     train_white_x, train_white_y    = load_data('hw2_winequality-white_train.npy')
     test_white_x, test_white_y      = load_data('hw2_winequality-white_test.npy')
-    
+    t_0 = time.time()
     # Tests
     red_wine_run(train_red_x, train_red_y, test_red_x, test_red_y)
     white_wine_run(train_white_x, train_white_y, test_white_x, test_white_y)
+    t_1 = time.time()
+
+    print("\n\n Runtime: ")
+    print(t_1-t_0)
+
 
 if __name__ == "__main__":
     main()
