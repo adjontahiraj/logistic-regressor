@@ -16,14 +16,15 @@ def load_data(filename):
     data_y = np.zeros(len(data))
     for i in range(len(data)):
         data_x[i] = data[i][0:11]
-        data_y[i] = data[i][-1]
-        # if(data[i][-1] <= 4):
-        #     data_y[i] = 0
-        # elif(data[i][-1] <= 6):
-        #     data_y[i] = 1
-        # else:
-        #     data_y[i] = 2
-    return data_x, data_y
+        #data_y[i] = data[i][-1]
+        if(data[i][-1] <= 4):
+            data_y[i] = 0
+        elif(data[i][-1] <= 6):
+            data_y[i] = 1
+        else:
+            data_y[i] = 2
+    dy = data_y.reshape(len(data_y),1)
+    return data_x, dy
 
 def red_wine_run(train_red_x, train_red_y, test_red_x, test_red_y):
     # Red wine data
